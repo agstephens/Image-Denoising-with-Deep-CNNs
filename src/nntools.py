@@ -227,7 +227,7 @@ class Experiment(object):
     def load(self):
         """Loads the experiment from the last checkpoint saved on disk."""
         checkpoint = torch.load(self.checkpoint_path,
-                                map_location=self.net.device)
+                                map_location=torch.device("cpu"), weights_only=False)
         self.load_state_dict(checkpoint)
         del checkpoint
 
